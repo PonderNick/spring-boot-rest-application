@@ -34,6 +34,7 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
     
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleExceptions(Exception ex, WebRequest request) {
+        // Exception is a generic exception, that would be thrown for any random cause. Exception should always return http 500
         ApiResponse errorResponse = new ApiResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
 
         return new ResponseEntity<>(errorResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST);

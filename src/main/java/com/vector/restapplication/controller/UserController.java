@@ -25,6 +25,7 @@ public class UserController {
      * The private UserRepository
      */
     private final UserRepository repository;
+    // This is where we delegate everything to a Service class. So we would create UserService.
 
     /**
      * The UserController constructor
@@ -42,12 +43,17 @@ public class UserController {
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@Valid @RequestBody User newUser) throws Exception {
+//        All this logic below should be delegated to a service class
+        // Is this variable named correctly? "request"???
         User request = repository.save(newUser);
 
+        // you're doing validation on the request, after you've saved it???
         if (request == null || !request.isValid()) {
+            // You can create custom exceptions, and then you can return an http 401 "Bad content", instead of http 500.
             throw new Exception("Failed to create the user.");
         }
 
+        // Whats up with the blank line there! :P
     }
 
     /**
@@ -62,6 +68,7 @@ public class UserController {
     public void updateUser(@Valid @RequestBody User newUser, @PathVariable String email) throws Exception {
         User getUserRequest = repository.findByEmail(email);
 
+        // Why are you validating the retrieved user from the database? Surely if it retrieved a saved user, then you dont need to isValid
         if (getUserRequest == null || !getUserRequest.isValid()) {
             throw new Exception("Failed to retrieve a valid user for update.");
         }
@@ -73,6 +80,7 @@ public class UserController {
 
         User updateUserRequest = repository.save(getUserRequest);
 
+        // you should validate the user before saving the user!
         if (updateUserRequest == null || !updateUserRequest.isValid()) {
             throw new Exception("Failed to update the user.");
         }
@@ -87,12 +95,15 @@ public class UserController {
     @GetMapping("/user/{email}")
     @ResponseStatus(HttpStatus.OK)
     public LinkedHashMap<String, String> getUser(@PathVariable String email) throws Exception {
+        // Is this variable named correctly? "request"???
         User request = repository.findByEmail(email);
 
+        // Do you really need to see if the "request" is valid???
         if (request == null || !request.isValid()) {
             throw new Exception("Failed to retreive a user.");
         }
-        
+
+        // no no no - yuck
         return request.UserResponse();
     }
 
@@ -104,8 +115,10 @@ public class UserController {
     @DeleteMapping("/user/{email}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable String email) throws Exception {
+        // Is this variable named correctly? "getUserRequest"???
         User getUserRequest = repository.findByEmail(email);
 
+        // Do you really need to see if the "request" is valid???
         if (getUserRequest == null || !getUserRequest.isValid()) {
             throw new Exception("Failed to retreive a user.");
         }

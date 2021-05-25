@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * The UserRepository interface implements access to the JpaRepository CRUD operations
  */
-@Transactional
+@Transactional // Is this needed? And why?
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
 }

@@ -154,7 +154,7 @@ public class User {
     public LinkedHashMap<String, String> UserResponse() {
         LinkedHashMap<String, String> user = new LinkedHashMap<>();
         user.put("email", this.email);
-        user.put("passowrd", this.password);
+        user.put("passowrd", this.password); // the map key "passowrd" is spelt incorrectly
         user.put("firstName", this.firstName);
         user.put("lastName", this.lastName);
 

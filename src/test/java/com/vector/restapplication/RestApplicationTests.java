@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest()
-class RestApplicationTests {
+class RestApplicationTests { // Just call it RestApplicationTest, not Tests
 
 	@Autowired UserController userController;
 
 	@Test
-	void contextLoads() throws Exception {
+	void contextLoads() throws Exception { // The throws Exception is not required
 		assertThat(userController).isNotNull();
 	}
 

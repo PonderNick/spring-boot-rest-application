@@ -9,6 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.vector</groupId>
+	<!-- Vector website is .co.nz not .com -->
 	<artifactId>rest-application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>rest-application</name>

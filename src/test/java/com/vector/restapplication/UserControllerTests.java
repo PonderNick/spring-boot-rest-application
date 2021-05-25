@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(UserController.class)
-public class UserControllerTests {
+public class UserControllerTests { // Just call it UserControllerTest, not Tests
 
 	/**
 	 * Autowire in MockMvc
@@ -30,13 +30,13 @@ public class UserControllerTests {
 	 * Create a Mock implementation of the User class
 	 */
 	@MockBean
-	private User user;
+	private User user; // looks like not used
 
 	/**
 	 * Create a Mock implementation of the UserController controller
 	 */
 	@MockBean
-	private UserController userController;
+	private UserController userController; // looks like not used
 
 	/**
 	 * Makes a post request to /user passing in a user object and expects a 201 response status.
@@ -47,7 +47,7 @@ public class UserControllerTests {
 		RequestBuilder request = MockMvcRequestBuilders
 		.post("/user")
 		.contentType(MediaType.APPLICATION_JSON)
-		.content(asJsonString(new User(3L, "myemail@gmail.com", "password", "fname", "lname")));
+		.content(asJsonString(new User(3L, "myemail@gmail.com", "password", "fname", "lname"))); // Dont do too many things in one line
 		MvcResult result = mvc.perform(request).andReturn();
 		assertEquals(201, result.getResponse().getStatus());
 	}

@@ -29,7 +29,7 @@ public class ApiResponse {
      * @param message
      */
     public ApiResponse(Integer code, String message) {
-        this.code = code.toString();
+        this.code = code.toString(); // I wouldve left this as an Integer. Looks like the only thing that uses it is the toString.
         this.message = message;
     }
 
